@@ -21,7 +21,7 @@ function rpsRound(playerSelection,computerSelection){
         if(computerSelection === "paper"){
             return ("You Lose! Paper beats Rock");
         }else if(computerSelection === "scissor"){
-            return ("You Win! Rock beats scissor");
+            return ("You Win! Rock beats Scissor");
         }else{
             return ("It's a Tie!");
         }
@@ -32,7 +32,7 @@ function rpsRound(playerSelection,computerSelection){
         }else if(computerSelection === "scissor"){
             return ("You Lose! Scissor beats Paper");        
         }else{
-            return ("You Win! Paper beats rock");          
+            return ("You Win! Paper beats Rock");          
         }
     }
     if (playerSelection === "scissor"){
@@ -41,28 +41,54 @@ function rpsRound(playerSelection,computerSelection){
         }else if(computerSelection === "scissor"){
             return ("It's a Tie!");
         }else{
-            return ("You Lose! Rock beats scissor");
+            return ("You Lose! Rock beats Scissor");
         }
     }
 
 }
 
 
-computerSelection = getComputerChoice();
+
+
 
 function game(){
     let playerScore = 0;
     let computerScore = 0;
+    
 
     for (let i=1;i<=5;i++){
 
+    let computerSelection = getComputerChoice();
+
     let playerSelection = prompt("Enter something").toLowerCase();
-    console.log(rpsRound(playerSelection, computerSelection));
+    let result = rpsRound(playerSelection, computerSelection);
+    console.log(result);
 
+    if (result === "I don't get it, try again" || result === "It's a Tie!" ){
+        i -= 1;
+    }else if(result ===("You Win! Rock beats Scissor") || result ===("You Win! Paper beats Rock") || result ===("You Win! Scissor beats Paper")){
+        playerScore += 1;
+        if (playerScore == 3) break;
+    }else {
+        computerScore += 1;
+        if (computerScore == 3) break;
+    }
+
+    console.log(playerScore);
+    console.log(computerScore);
+
+    }
+
+    console.log(playerScore);
+    console.log(computerScore);
     
-
+    if (playerScore>computerScore){
+        console.log(`Congrats!!! You've won`);
+    }else{
+        console.log(`You've Lost :(`);
     }
 
 }
 
 game();
+
