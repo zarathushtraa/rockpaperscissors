@@ -11,7 +11,9 @@ function getComputerChoice(){
 
 
 
-function rpsRound(playerSelection,computerSelection){
+function rpsRound(playerSelection){
+    
+    
 
     if(playerSelection !== "rock" && playerSelection !== "paper" && playerSelection !== "scissor"){
         return ("I don't get it, try again");
@@ -45,12 +47,28 @@ function rpsRound(playerSelection,computerSelection){
         }
     }
 
-}
+};
+
+
+const buttons = document.querySelectorAll('button');
+
+let computerSelection = getComputerChoice();
+
+const div = document.createElement('div');
+div.classList.add('winner');
+
+
+buttons.forEach((button) => {
+    button.addEventListener('click', () =>{
+        let result = rpsRound(button.id,computerSelection);
+        div.textContent = result;
+        document.body.appendChild(div);
+    });
+}) ;
 
 
 
-
-
+/*
 function game(){
     let playerScore = 0;
     let computerScore = 0;
@@ -92,3 +110,4 @@ function game(){
 
 game();
 
+*/
